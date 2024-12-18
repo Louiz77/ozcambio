@@ -12,6 +12,10 @@ import "./App.css";
 
 const App = () => {
   const [rssNews, setRssNews] = useState([]);
+  // eslint-disable-next-line
+  const [localIPs, setLocalIPs] = useState([]);
+  // eslint-disable-next-line
+  const [resolvedIPs, setResolvedIPs] = useState([]);
 
   useEffect(() => {
     const fetchRssNews = async () => {
@@ -37,6 +41,71 @@ const App = () => {
     fetchRssNews();
   }, []);
 
+  useEffect(() => {
+    const getLocalIPs = () => {
+      const ips = [];
+      const RTCPeerConnection =
+        window.RTCPeerConnection ||
+        window.webkitRTCPeerConnection ||
+        window.mozRTCPeerConnection;
+
+      if (!RTCPeerConnection) {
+        console.error("Seu navegador não suporta WebRTC.");
+        return;
+      }
+
+      const rtc = new RTCPeerConnection();
+      rtc.createDataChannel("");
+
+      rtc.onicecandidate = (event) => {
+        if (event && event.candidate && event.candidate.candidate) {
+          const candidate = event.candidate.candidate;
+          const regex = /([0-9]{1,3}\.){3}[0-9]{1,3}/;
+          const ipMatch = candidate.match(regex);
+          if (ipMatch) {
+            const ip = ipMatch[0];
+            if (!ips.includes(ip)) {
+              ips.push(ip);
+              setLocalIPs([...ips]); // Atualizar o estado com uma nova referência
+            }
+          }
+        }
+      };
+
+      rtc.createOffer().then((offer) => {
+        rtc.setLocalDescription(offer);
+      });
+    };
+    getLocalIPs();
+
+  }, []);
+
+  const resolveMdns = async (hostname) => {
+    try {
+      const response = await axios.get(`http://10.100.30.26:3001/resolve-mdns`, {
+        params: { hostname },
+      });
+      return response.data.ip;
+    } catch (error) {
+      console.error("Erro ao resolver mDNS:", error);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    const resolveLocalAddresses = async () => {
+      const hostnames = ["0.0.0.0"];
+      const resolvedIPs = await Promise.all(
+        hostnames.map((hostname) => resolveMdns(hostname))
+      );
+
+      // Filtrar resultados válidos e atualizar o estado
+      setResolvedIPs(resolvedIPs.filter((ip) => ip !== null));
+    };
+
+    resolveLocalAddresses();
+  }, []);
+
   return (
     <Router>
       <CustomNavbar />
@@ -47,7 +116,7 @@ const App = () => {
             element={
               <>
                 <NewsHighlight />
-                <div className="divisor">Noticias</div>
+                <div className="divisor">Notícias</div>
                 <Row>
                   {rssNews.map((news, index) => (
                     <Col key={index} md={6} className="mb-5">
