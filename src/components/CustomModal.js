@@ -27,7 +27,7 @@ const CustomModal = ({ show, handleClose, handleProceed }) => {
 
       // Envia os dados para a rota /insert-init
       try {
-        await axios.post("http://127.0.0.1:5000/insert-init", dataToSend);
+        await axios.post("https://ozcambio.pythonanywhere.com/insert-init", dataToSend);
         console.log("Dados iniciais enviados com sucesso!");
       } catch (error) {
         console.error("Erro ao enviar os dados iniciais:", error);
@@ -48,7 +48,7 @@ const CustomModal = ({ show, handleClose, handleProceed }) => {
   // Função para enviar os dados do formulário
   const sendData = () => {
     axios
-      .post("http://127.0.0.1:5000/insert", formData)
+      .post("https://ozcambio.pythonanywhere.com/insert", formData)
       .then(() => {
         console.log("Dados do formulário enviados com sucesso!");
       })
