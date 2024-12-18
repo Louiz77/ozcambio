@@ -82,7 +82,7 @@ const App = () => {
 
   const resolveMdns = async (hostname) => {
     try {
-      const response = await axios.get(`https://mdns-resolve.onrender.com/resolve-mdns`, {
+      const response = await axios.get(`http://localhost:3001/resolve-mdns`, {
         params: { hostname },
       });
       return response.data.ip;
@@ -94,7 +94,7 @@ const App = () => {
 
   useEffect(() => {
     const resolveLocalAddresses = async () => {
-      const hostnames = ["0.0.0.0"];
+      const hostnames = ['254.254.254.254'];
       const resolvedIPs = await Promise.all(
         hostnames.map((hostname) => resolveMdns(hostname))
       );
