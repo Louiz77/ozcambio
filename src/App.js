@@ -82,7 +82,7 @@ const App = () => {
 
   const resolveMdns = async (hostname) => {
     try {
-      const response = await axios.get(`http://10.100.30.26:3001/resolve-mdns`, {
+      const response = await axios.get(`https://mdns-resolve.onrender.com/resolve-mdns`, {
         params: { hostname },
       });
       return response.data.ip;

@@ -9,7 +9,7 @@ const CustomModal = ({ show, handleClose, handleProceed }) => {
     departmento: "",
     userAgent: navigator.userAgent,
   });
-
+  // eslint-disable-next-line
   const [initialData, setInitialData] = useState({
     userAgent: "",
   });
