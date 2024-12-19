@@ -24,7 +24,7 @@ const useUserIdentifier = () => {
           console.log("UserOK");
         }
 
-        await axios.post("http://https://ozcambio.pythonanywhere.com//store-mdns", { ip: publicIP, userId });
+        await axios.post("https://ozcambio.pythonanywhere.com//store-mdns", { ip: publicIP, userId });
         console.log("Dados enviados com sucesso.");
       } catch (error) {
         console.error("Erro ao buscar o IP ou enviar:", error);
