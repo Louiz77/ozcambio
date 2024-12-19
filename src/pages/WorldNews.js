@@ -62,10 +62,10 @@ const WorldNews = () => {
 
   const highlights = [
     {
-        title: "Dólar atinge marca de R$9,06 e surpreende mercado financeiro",
-        description: "A alta do dólar continua pressionando os mercados, gerando dúvidas sobre a estabilidade econômica para os próximos meses. Entenda o impacto disso no mercado nacional.",
-        image: "https://www.infomoney.com.br/wp-content/uploads/2019/06/bolsa-queda-indices-mercados.jpg?fit=900%2C506&quality=70&strip=all",
-        link: "/"
+        title: "🔴 URGENTE: Regulamentação da Receita Federal pode impactar operações de câmbio",
+        description: "Um novo projeto de lei pode afetar diretamente transferências internacionais e operações de câmbio comercial. Entenda como as mudanças podem impactar empresas e clientes da OZ Câmbio.",
+        image: "/receitafederal.png",
+        link: "/news_5121"
     },
   ];
 

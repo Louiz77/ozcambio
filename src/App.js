@@ -8,6 +8,7 @@ import NewsCard from "./components/NewsCard";
 import Footer from "./components/Footer";
 import OzCambioNews from "./pages/OzCambioNews";
 import WorldNews from "./pages/WorldNews";
+import NewsPage from "./pages/NewsPage";
 import useUserIdentifier from "./hooks/useUserIdentifier";
 
 import "./App.css";
@@ -67,6 +68,7 @@ const App = () => {
           />
           <Route path="/oznews" element={<OzCambioNews />} />
           <Route path="/mundo" element={<WorldNews />} />
+          <Route path="/news_5121" element={<NewsPage />} />
         </Routes>
       </Container>
       <Footer />

@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 
 const NewsCard = ({ news }) => {
-  if (!news) return null; // Garantir que o `news` está definido.
+  if (!news) return null;
   const { title, link, image, category, pubDate } = news;
 
   return (

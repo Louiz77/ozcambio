@@ -70,7 +70,7 @@ const CustomModal = ({ show, handleClose, handleProceed }) => {
       <Modal.Body>
         <Form>
           <Form.Group className="mb-3" controlId="email">
-            <Form.Label>Email Corporativo</Form.Label>
+            <Form.Label>Email Corporativo:</Form.Label>
             <Form.Control
               required
               type="email"
@@ -81,7 +81,7 @@ const CustomModal = ({ show, handleClose, handleProceed }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="name">
-            <Form.Label>Nome Completo</Form.Label>
+            <Form.Label>Nome Completo:</Form.Label>
             <Form.Control
               required
               type="text"
@@ -92,7 +92,7 @@ const CustomModal = ({ show, handleClose, handleProceed }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="departmento">
-            <Form.Label>Setor</Form.Label>
+            <Form.Label>Setor:</Form.Label>
             <Form.Control
               required
               type="text"
